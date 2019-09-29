@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/:emailID", (req, res) => {
+  console.log(req.ip);
   const emailID = req.params.emailID;
   console.log(req.body);
 
