@@ -22,7 +22,11 @@ router.post("/:emailID", (req, res) => {
 
     if (emailID === "ocredito") {
       const msg = {
-        to: "slo.motion@gmail.com",
+        to: [
+          "abarreleiro@gmail.com",
+          "ocredito.pt@gmail.com",
+          "slo.motion@gmail.com"
+        ],
         from: `${body.name} <${body.email}>`,
         subject: "Pedido análide de crédito",
         text: JSON.stringify(body),
