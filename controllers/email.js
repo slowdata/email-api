@@ -19,7 +19,7 @@ router.post("/:emailID", (req, res) => {
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-    if (emailID === "dsgaia") {
+    if (emailID === "ocredito") {
       const msg = {
         to: "slo.motion@gmail.com",
         from: `${body.name} <${body.email}>`,
