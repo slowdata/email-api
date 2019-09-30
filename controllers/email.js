@@ -4,16 +4,11 @@ const router = express.Router();
 const labels = require("../utils/labels");
 
 router.get("/", (req, res) => {
-  console.log("<> yep");
-
   res.send("Hello World");
 });
 
 router.post("/:emailID", (req, res) => {
-  console.log(req.ip);
   const emailID = req.params.emailID;
-  console.log(req.body);
-
   if (Object.keys(req.body).length > 0) {
     const body = req.body;
 
@@ -23,8 +18,8 @@ router.post("/:emailID", (req, res) => {
     if (emailID === "ocredito") {
       const msg = {
         to: [
-          "abarreleiro@gmail.com",
-          "ocredito.pt@gmail.com",
+          // "abarreleiro@gmail.com"
+          // "ocredito.pt@gmail.com",
           "slo.motion@gmail.com"
         ],
         from: `${body.name} <${body.email}>`,
@@ -51,6 +46,18 @@ module.exports = router;
 
 function buildHtml(mail) {
   const keys = Object.keys(mail);
-  const lis = keys.map(k => `<li>${labels[k]}: ${mail[k]}</li>`);
+  const lis = keys.map(k => {
+    if (k === "goal") {
+      const val = labels.goalValue[mail[k]];
+      return `<li>${labels[k]}: ${val}</li>`;
+    } else if (k === "household1" || k === "household2") {
+      const val = labels.household[mail[k]];
+      return `<li>${labels[k]}: ${val}</li>`;
+    } else if (k === "rent" || k === "credit" || k === "income") {
+      return `<li>${labels[k]}: ${mail[k]}€</li>`;
+    } else {
+      return `<li>${labels[k]}: ${mail[k]}</li>`;
+    }
+  });
   return `<ul>${lis.join("")}</ul>`;
 }
