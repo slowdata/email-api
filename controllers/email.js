@@ -18,8 +18,8 @@ router.post("/:emailID", (req, res) => {
     if (emailID === "ocredito") {
       const msg = {
         to: [
-          // "abarreleiro@gmail.com"
-          // "ocredito.pt@gmail.com",
+          "abarreleiro@gmail.com",
+          "ocredito.pt@gmail.com",
           "slo.motion@gmail.com"
         ],
         from: `${body.name} <${body.email}>`,
